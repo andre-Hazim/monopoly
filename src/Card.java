@@ -34,6 +34,7 @@ public class Card {
      * The constructor for the Card class
      * @param name the String for the name of the card
      * @param cost the int for the cost of the property
+     * @param position the position of the card
      */
     public Card(String name, int cost, int position) {
         this(name, cost, position, null, null, 0, 0);
@@ -43,11 +44,23 @@ public class Card {
      * the constructor for the card Class
      * @param name the name of that card
      * @param cost the cost of the card
+     * @param position the position of the card
      * @param color the color of the card
      */
     public Card(String name, int cost, int position, Color color) {
         this(name,cost, position, color, null, 0, 0);
     }
+
+    /**
+     * the constructor for the card Class
+     * @param name the name of that card
+     * @param cost the cost of the card
+     * @param position the position of the card
+     * @param color the color of the card
+     * @param cardType the card type of the card
+     * @param houseCost the price of the house on the card
+     * @param hotelCost the price of the hotel on the card
+     */
     public Card(String name, int cost, int position, Color color, CardType cardType, int houseCost, int hotelCost) {
         this.name = name;
         this.cost = cost;
@@ -139,14 +152,18 @@ public class Card {
                 return 0;
             }
             else if(this.getOwner().getNumUtils() == 1){
-                return (this.getOwner().getPosition() - this.getOwner().getPrevPostion())*4;
+                return (this.getOwner().getPosition() - this.getOwner().getPrevPosition())*4;
             }else{
-                return (this.getOwner().getPosition() - this.getOwner().getPrevPostion())*10;
+                return (this.getOwner().getPosition() - this.getOwner().getPrevPosition())*10;
             }
 
         }
     }
 
+    /**
+     * getter for the card type
+     * @return the CardType enum
+     */
     public CardType getCardType() {
         return cardType;
     }
@@ -222,15 +239,16 @@ public class Card {
      * @return the int of whether the card has an owner, no owner, or if the owner is p
      */
     public int functionality(Player p){
+        if(getCardType().equals(CardType.jail)){
+            System.out.println("Function 3");
+            return 3;
+        }
         if (this.owner == null){
             return 0;
         }
         else{
             if (this.owner.getName().equals(p.getName())){
                 return 1;
-            }
-            else if (this.owner.getName().equals("warden")){
-                return 3;
             }
             return 2;
         }

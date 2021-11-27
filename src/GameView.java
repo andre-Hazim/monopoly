@@ -19,5 +19,15 @@ public interface GameView {
 
     void announceToJail(GameEvent e);
 
+    void announceJailTime(GameEvent e);
+
+    void payJailFee(GameEvent e);
+
     void askToBuyHotel(GameEvent gameEvent);
+
+    void handleBot(GameEvent e);
+
+    void announceBoughtBotProperty(GameEvent gameEvent);
+
+    void announcePaidBotRent(GameEvent gameEvent);
 }

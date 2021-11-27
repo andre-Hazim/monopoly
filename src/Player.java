@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Player {
-    private int prevPostion;
+    private int prevPosition;
     private String name;
     private int money;
     private int position;
@@ -16,22 +16,31 @@ public class Player {
     private ArrayList<Card> properties;
     private int numUtils;
     private int isInJail;
+    private boolean exconvict;
+    private boolean isBot;
 
     /**
      * The constructor for the Player class
      * @param name the name of the player
      */
-    public Player(String name){
+    public Player(String name, boolean isBot){
         this.name = name;
+        this.isBot = isBot;
         this.money = 1500;
         this.position = 0;
         this.playing = true;
         properties = new ArrayList<>();
-        this.prevPostion = 0;
+        this.prevPosition = 0;
         this.numUtils = 0;
         this.isInJail = 0;
+        this.exconvict = false;
     }
-
+    public boolean getExconvict(){
+        return exconvict;
+    }
+    public void setExconvict(boolean bool){
+        exconvict = bool;
+    }
     /**
      * This method is used for a player to pay another player's rent for their property
      * @param player Player they are paying
@@ -56,6 +65,10 @@ public class Player {
      */
     public String getName() {
         return name;
+    }
+
+    public boolean getIsBot(){
+        return isBot;
     }
 
     /**
@@ -109,6 +122,10 @@ public class Player {
         this.playing = playing;
     }
 
+    /**
+     * getter for the number of utilities
+     * @return the int of the number of utilities
+     */
     public int getNumUtils() {
         return numUtils;
     }
@@ -134,8 +151,8 @@ public class Player {
      * Gets the previous position of the player
      * @return the int of the previous position
      */
-    public int getPrevPostion() {
-        return prevPostion;
+    public int getPrevPosition() {
+        return prevPosition;
     }
 
     /**
@@ -143,12 +160,21 @@ public class Player {
      * @param position the int of the previous position
      */
     public void setPrevPosition(int position) {
-        this.prevPostion = position;
+        this.prevPosition = position;
     }
 
+    /**
+     * getter for if the player is in jail
+     * @return the int of whether the player is in jail or not
+     */
     public int getIsInJail(){
         return this.isInJail;
     }
+
+    /**
+     * setter for the jail time
+     * @param jailTime the int time
+     */
     public void setIsInJail(int jailTime){
         this.isInJail = jailTime;
     }
